@@ -1,0 +1,37 @@
+FANCY PATTERN Q1:
+
+QSN:
+*********1*********
+********2*2********
+*******3*3*3*******
+******4*4*4*4******
+*****5*5*5*5*5*****
+****6*6*6*6*6*6****
+***7*7*7*7*7*7*7***
+**8*8*8*8*8*8*8*8**
+*9*9*9*9*9*9*9*9*9*
+
+Solution :
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int main() {
+ 
+ for(int i =0;i<=8;++i)
+ {
+    //this is for the stars
+    for(int j=8-i;j>=0;--j) cout<<"*";
+    
+    for(int k=1;k<=(2*i)+1;k++)
+    {
+
+   if(k%2==0)cout<<"*";
+   else cout<<i+1;
+    }
+    for(int j=8-i;j>=0;--j) cout<<"*";
+    
+    cout<<"\n";
+ }
+ 
+}
