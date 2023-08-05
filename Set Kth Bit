@@ -1,0 +1,29 @@
+QSN:
+Set the kth bit
+
+SOlUTION : we use a mask and bitwise or it with the number 
+
+eg 10 = 1 0 1 0
+and set 2nd bit means 1 1 1 0 that means we did nt disturb any other bit and thats only possible when we use OR
+because OR ensurses 0|0 = 0 and 1|1 = 1 and  0|1=1 applies where we waant to set the bit..
+
+
+MASKING is done by shifting 1 by Kth position towards left 1<<Kth 
+
+SOLUTION CODE:
+#include <iostream>
+using namespace std;
+int main() {
+  
+  int test_case=0;
+  cin>>test_case;
+  while(test_case--){
+   int number=0,pos=0,mask=0;
+   cin>>number>>pos;
+  
+    mask=1<<pos;
+   int ans=number | mask;
+   cout<<ans<<"\n";
+  }
+    return 0;
+}
