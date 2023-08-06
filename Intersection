@@ -1,0 +1,49 @@
+QSN : INTERSECTION OF ARRAY
+
+IMPORTANT CONCEPT: masking is important to prevent repeating..
+           // for eg a = 1, 2, 3, 3, 4;
+           // for eg b = 5 ,6 , 3, 3, 4;
+           
+           // without masking c= 3,3,3,4,as 3 gets chekced for every 3in b
+           // with masking c= 3,4 as 3 gets masked as -1;
+
+Solution:// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+    int n,m=0;
+    cout<<"n"<<"\n";
+    cin>>n;
+    
+    cout<<"m"<<"\n";
+    cin>>m;
+    
+    int a[n];
+    int b[m];
+     vector<int>c;
+     
+    for(int i =0;i<n;++i){cout<<"arr 1"<<"\n"; cin>>a[i];}
+    for(int i =0;i<m;++i){cout<<"arr 2"<<"\n"; cin>>b[i];}
+    
+    for(int i =0;i<n;i++)
+    {
+        for( int j=0;j<m;++j)
+        {
+          if(a[i]==b[j])
+          {
+              b[j]=-1;
+              c.push_back(a[i]);
+          }
+            
+        }
+    }
+    
+        for(int i =0;i<c.size();++i){cout<<c[i]<<" ";}
+
+    return 0;
+}
+
+
+          
