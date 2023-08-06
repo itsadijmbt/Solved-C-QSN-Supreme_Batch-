@@ -1,0 +1,48 @@
+IMPORTANT : we use the intersection logic of setting more than once found common elemnt as INT_MIN this ensures and prevents duplication.
+
+EXPLANATION : What we do is check for similar in other array replacee them with INT_MIN and then we merge these two arr excluding the terms == INT_MIN.
+
+SOLUTION :
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+    int n,m=0;
+    cout<<"n"<<"\n";
+    cin>>n;
+    
+    cout<<"m"<<"\n";
+    cin>>m;
+    
+    int a[n];
+    int b[m];
+     vector<int>c;
+     
+    for(int i =0;i<n;++i){cout<<"arr 1"<<"\n"; cin>>a[i];}
+    for(int i =0;i<m;++i){cout<<"arr 2"<<"\n"; cin>>b[i];}
+    
+    for(int i =0;i<n;i++)
+    {
+        for( int j=0;j<m;++j)
+        {
+          if(a[i]==b[j])
+          {
+              b[j]=-1;  
+          }   
+        }
+    }
+    
+   for(int i=0;i<m+n;++i)
+   {
+       if(i<n)
+       c.push_back(a[i]);
+       else{
+           if(b[i-n]>0)
+           c.push_back(b[i-n]);
+       }
+   }
+   for(int i=0;i<c.size();++i)cout<<c[i]<<" ";  
+      return 0;
+}
