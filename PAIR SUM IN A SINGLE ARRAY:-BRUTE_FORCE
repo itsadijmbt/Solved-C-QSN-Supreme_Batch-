@@ -1,0 +1,35 @@
+
+QSN :PAIR SUM IN A SINGLE ARRAY:-BRUTE_FORCE
+
+
+SOLUTION:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n=0,sum=0,pair=0;
+    cin>>n>>sum;
+    int a[n];
+    for(int i=0;i<n;++i)cin>>a[i];
+    for(int i=0;i<n;++i)
+    {
+        // this step where j=i ensures that duplicate pairs are avoided.
+        // as the array gets traversed first the common onces are left automatically as it leaves which have been taken in loop of i
+        for(int j=i;j<n;++j)
+      {
+            if(sum-a[i]==a[j])
+          {
+              pair++;
+             cout<<a[i]<<" "<<a[j]<<"\n";
+          }
+      }
+   }
+   
+    cout<<pair<<"\n";  
+    return 0;
+}
+
+
+
+
+
