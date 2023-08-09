@@ -1,0 +1,42 @@
+//SORT 0 & 1 using 2 pointers
+#include <iostream>
+using namespace std;
+int main() {
+
+    int n=0,sum=0;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;++i)cin>>a[i];
+    
+    //the two pointer approach is based on the pointer approach
+    // we have a start and end pointer
+    // start is supposed to point 0's and end points 1's.
+    // now if on any index no==0 i.e usko start ko de
+    // and if any no==1 i.e usko end ko dedo
+    // mtlb in short positions swap hoori hai 0 & 1 ki
+    // start increment hoga mtlb alga zero idhar ana chahiye
+    // end decrement hoga..kyonki jaise jaise loop ka i badh raha hai waise waise zero aur one milenge 1 ko last mein dalo aur zeros ko start mein
+    
+    // very important if(a[i]==1) toh end ke saath i ko bhi decrement kro becuase iska sure nahi hai ki yah end mein 1 tha ya 0 start ke case mein a[i]==0 hona chahiye aur start khud bhi zero hai that means a[start] aur jab loop furst baar chalegi i=0 toh agr ye wali condition sahi hui ki if(a[i]==0) to a[start ] bhi zero hi tha
+    // but end ke saath aisa kch nhai hai us position meun 1 or zero kch bhi ho skt ahai isliye hum i++ nahi karenge usme taki wo a[i] phir se check ho ki swap hone ke baad kya aya hai isme
+    int end=n-1,start=0,i=0;
+    while(i!=end)
+    {
+        // i!=end isliye kyonki i bhi khali start mein badh ra hai mtlb zeros ke collection hone pr increase kr raha hai aur end 1 ke collection badh ne pr ghat raha hai ek time ayega jab i ka badhna aur end ka ghatna dono same position mein honge tb end
+        if(a[i]==0)
+        {
+            swap(a[i],a[start]);
+            start++;
+            i++;
+        }
+        else{
+            swap(a[i],a[end]);
+            end--;
+            
+        }
+    }
+ 
+   for(int i =0;i<n;i++)cout<<a[i]<<" , ";
+    
+    return 0;
+}
