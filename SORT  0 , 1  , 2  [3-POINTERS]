@@ -1,0 +1,64 @@
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+   int n=0;
+   cin>>n;
+   int a[n];
+   
+   for(int i =0;i<n;++i)cin>>a[i];
+      
+   cout<<"BEFORE\n";
+   for(int i=0;i<n;++i)cout<<a[i]<<" ";
+   
+   int l=0,m=0,h=n-1;
+   // m holds the key positions
+   
+   while(m!=h)
+   {
+       
+       //cause zeros at start an kepp collecting and we move the mid and l pointer ahead also 
+       if(a[m]==0)
+       {
+           swap(a[m],a[l]);
+           // swaps with l because l has 0s position and m respresnts 1 so thats why swapping
+           l++;
+           m++;
+       }
+       else if (a[m]==1)
+       {
+          
+           //now we make the m++ ( m is the pointer for 1) so that it leaves that 1 and if so happens note the l would be there behind so any left over 1
+           //would be picked if later a[m]==0 so now note the l onlyincraese if a[m]==0 and until then it was at that same pos, now l moves and 
+           m++;
+           
+       }
+       else{
+           // now when we find two it is supposed to be at h as we replace it
+           //now you would think that what if a[h]==2 so note m is not being increased...it remains there till h result in something different
+           // because after swapping with h a[m]is now !=2 so it would look for above two conditions
+           swap(a[m],a[h]);
+            h--;
+ 
+    
+       }
+       
+   }
+   
+   cout<<"\nAFTER\n";
+   for(int i=0;i<n;++i)cout<<a[i]<<" ";
+
+}
+
+
+
+
+
+
+
+
+
+
