@@ -1,0 +1,70 @@
+QSN: Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.
+Note: can you take care of the duplicates without using any additional Data Structure?
+
+Link:https://practice.geeksforgeeks.org/problems/common-elements1132/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+
+HINT: map is used to maintain order and to prevent dupilcity and fake count logic is applied wihtout using other ds and also single map ds is used instead of n1+n2+n3 space complexity.
+
+SOLUTION:
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:    
+       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            vector<int> ans;
+            map<int , int> m;
+            
+             for(int i=0;i<n1;++i)
+               {
+                   if(i<n1-1){
+                   if(A[i]!=A[i+1]) {m[A[i]]++;}
+                   }
+                   else if(i==n1-1)
+                   {
+                     m[A[i]]++;  
+                   }
+               }
+                for(int i=0;i<n2;++i)
+               {
+                   if(i<n2-1){
+                   if(B[i]!=B[i+1]) {m[B[i]]++;}
+                   }
+                   else if(i==n2-1)
+                   {
+                     m[B[i]]++;  
+                   }
+               }
+                for(int i=0;i<n3;++i)
+               {
+                   if(i<n3-1){
+                   if(C[i]!=C[i+1]) {m[C[i]]++;}
+                   }
+                   else if(i==n3-1)
+                   {
+                     m[C[i]]++;  
+                   }
+               }
+                
+            
+            
+            for(auto i: m)
+            {
+                if(i.second>2) ans.push_back(i.first);
+            }
+            
+            return ans;
+            
+            //code here.
+        }
+
+};
