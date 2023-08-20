@@ -1,0 +1,47 @@
+
+
+LINK:https://practice.geeksforgeeks.org/problems/square-root/1?utm_source=geeksforgeeks&utm_medium=ml_article_practice_tab&utm_campaign=article_practice_tab
+
+QSN:
+Square root of a number
+Given an integer x, find the square root of x. If x is not a perfect square, then return floor(√x).
+Expected Time Complexity: O(log N)
+Expected Auxiliary Space: O(1)
+
+SOLN:
+// Function to find square root
+// x: element to find square root
+class Solution{
+  public:
+    long long int floorSqrt(long long int x) 
+    {
+      
+    
+        long long int s=0,e=x,m=0;
+        m=s+(e-s)/2;
+        long long int ans;
+        
+        while(s<=e)
+        {    m=s+(e-s)/2;
+           
+           if((m*m)==x)
+           {
+               ans=m;
+               break;
+           }
+           else if((m*m)<x)
+           {
+               ans=m;
+               s=m+1;
+           }
+           else if(m*m>x)
+           {
+               e=m-1;
+           }
+          
+        }
+    
+        return ans;
+    }
+};
+ 
