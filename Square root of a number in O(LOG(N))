@@ -1,0 +1,51 @@
+
+
+
+
+
+
+
+
+SOLUTION:
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+  
+
+// } Driver Code Ends
+// Function to find square root
+// x: element to find square root
+class Solution{
+  public:
+    long long int floorSqrt(long long int x) 
+    {
+      
+    
+        long long int s=0,e=x,m=0;
+        m=s+(e-s)/2;
+        long long int ans;
+        
+        while(s<=e)
+        {    m=s+(e-s)/2;
+           
+           if((m*m)==x)
+           {
+               ans=m;
+               break;
+           }
+           else if((m*m)<x)
+           {
+               ans=m;
+               s=m+1;
+           }
+           else if(m*m>x)
+           {
+               e=m-1;
+           }
+          
+        }
+    
+        return ans;
+    }
+};
