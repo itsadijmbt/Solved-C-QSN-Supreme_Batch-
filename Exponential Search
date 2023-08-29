@@ -1,0 +1,20 @@
+An exponential search is based on the fact that we derive a sub array that reduces the time comolecity for very long arrays.
+
+Code Snippet :
+
+if(a[0]==x)
+return 0;
+int i=0 //i initilaised with 1 as i=i*2 for exponnetial if it would be zero than no expo
+
+while(i<n && a[i]<=x)
+{
+   i=i*2;//i=i<<1;
+}
+this moves the i exponential ahead depending whether it finds a number bigger or it reaxches end
+
+now note if we do get the sub-array it would start at i/2 and end at i as i gets 2X;
+
+return binary_search(a,min(i,n-1),x);
+//min done for the case if i was = n-1 or n-2 then 2*(n-1) or any other term would give error
+
+<<REST IS SAME BINARY SEARCH>>
