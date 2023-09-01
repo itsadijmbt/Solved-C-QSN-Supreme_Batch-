@@ -1,0 +1,106 @@
+DRY RUN EXPLANATION:
+
+
+
+
+Explanation : the soln is based on considering the total sum of pages as part of search space..the algo works on the fact to find the least sum for max books, we have a bs logic that explores the search space and sends it to a function
+and the function function checks whther the particular ans is suitable as per elements and constraints...the function checks whether it ispossible for elements to form this combinational sum and if not return false
+
+in function if we check that if the sum is possible for this no of M students which is checked by c as soon  as c gets > m we break it and return false;
+
+
+
+SOLN:
+//{ Driver Code Starts
+// Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function template in C++
+
+class Solution 
+{
+    public:
+ 
+     bool isPossible(int A[], int N, int M, int sol)
+     {
+         int sum=0,c=1;
+         for(int i=0;i<N;i++)
+         {
+             if(A[i]>sol)
+             {
+                 return false;
+             }
+             else if(sum+A[i]>sol)
+             {
+                 c++;
+                 sum=A[i];
+                 if(c>M)
+                 {
+                     return false;
+                 }
+                 
+             }
+             else{
+                 sum+=A[i];
+             }
+         }
+         return true;
+         
+     }
+ 
+ 
+ 
+    int findPages(int A[], int N, int M) 
+    {
+     
+      if(M>N)return -1;
+      
+      int start=0;
+      int end=accumulate(A, A+N, 0);
+      int ans=-1;
+      int mid=start + (end-start)/2;
+      
+      while(start<=end)
+      {
+          mid=start + (end-start)/2;
+          if(isPossible(A, N, M, mid))
+          {
+              ans=mid;
+              end=mid-1;
+          }
+          else{
+              start=mid+1;
+          }
+      }
+      
+    return ans;
+  
+    }
+    
+    };
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int A[n];
+        for(int i=0;i<n;i++){
+            cin>>A[i];
+        }
+        int m;
+        cin>>m;
+        Solution ob;
+        cout << ob.findPages(A, n, m) << endl;
+    }
+    return 0;
+}
+
+// } Driver Code Ends
