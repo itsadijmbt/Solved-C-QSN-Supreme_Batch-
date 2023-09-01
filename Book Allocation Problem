@@ -1,6 +1,6 @@
 DRY RUN EXPLANATION:
-
-
+blob:https://web.whatsapp.com/ef8f1e42-f7e6-435a-9eaf-905e721866b1
+blob:https://web.whatsapp.com/13caada0-08d1-481f-ae1b-5813ba65564b
 
 
 Explanation : the soln is based on considering the total sum of pages as part of search space..the algo works on the fact to find the least sum for max books, we have a bs logic that explores the search space and sends it to a function
