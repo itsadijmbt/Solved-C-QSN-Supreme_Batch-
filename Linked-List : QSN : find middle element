@@ -1,0 +1,104 @@
+
+Step 1: set slow and fast to head;
+Step 2: fast moves 2 and slow moves 1
+Step 3: whem fast =NULL slow stops
+Step 4: return slow
+
+
+#include <iostream>
+using namespace std;
+
+class Node{
+  
+  public:
+  int data;
+  Node *next;
+  
+  Node(int data)
+  {
+      this->data=data;
+      this->next=NULL;
+      
+  }
+    
+ 
+    
+};
+
+Node * middleEle(Node *head)
+{
+    if(head==NULL)
+    {
+    cout<<"Empty";
+    return head;
+    }
+    else if(head->next==NULL)
+    {
+        return head;
+    }
+    else{
+        
+        Node * slow=head;
+        Node* fast=head->next;
+        // for even to be at exactly mid use fast=head->next; this also works for odd correclty
+        // for even to be mid+1,fast=head; this works correctly for odd
+        // odd all work fine; 
+        while(slow!=NULL && fast!=NULL)
+        {
+            //in case fast is in last nde
+            fast=fast->next;
+            if(fast!=NULL)
+            {
+                fast=fast->next;
+                slow=slow->next;
+                
+            }
+        }
+        return slow;
+    }
+}
+
+void print(Node * head)
+{
+    Node* temp=head;
+    
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+    cout<<"\n";
+}
+
+
+int main()
+{
+    Node *head=new Node(10);
+    Node *second=new Node(20);
+    Node *third=new Node(30);
+    Node *fourth=new Node(40);
+    Node *fifth=new Node(50);
+    Node *tail=new Node(60);
+    
+    head->next=second;
+    second->next=third;
+    third->next=fourth;
+    fourth->next=fifth;
+    fifth->next=tail;
+    tail->next=NULL;
+    
+    print(head);
+    cout<<"\n";
+    
+    Node* mid=middleEle(head);
+    
+    cout<<mid->data;
+    
+    
+
+    return 0;
+}
+
+
+
+
