@@ -1,0 +1,101 @@
+
+#include <iostream>
+using namespace std;
+
+class Node{
+    
+    public:
+    
+    int data;
+    Node* next;
+    
+    Node(int data)
+    {
+        this->data=data;
+        this->next=NULL;
+    }
+    
+};
+
+void display(Node *head)
+{
+    Node *temp=head;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"\t";
+    
+        temp=temp->next;
+    }
+    cout<<"\n";
+}
+
+bool reverse_K_nodes_check_palindrome(Node *head, int length)
+{  
+     if(head==NULL) return NULL;
+     if(head->next==NULL) return NULL;
+   
+    
+    int mid=length/2;
+    //  cout<<mid<<"\n";
+    int count=0;
+    
+    Node *prev=NULL;
+    Node *curr=head;
+
+    Node *fordward=curr->next;
+    while(count<mid)
+    {
+        fordward=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=fordward;
+        count++;    
+    }
+    head->next=fordward;
+    //as now prev is in the start elememt and head is last so poiting to fordward
+   display(prev);
+    
+    // checking palindrome
+    Node * start=prev;
+    Node *initial;
+    
+    if(length%2!=0) initial=fordward->next;
+    else initial=fordward;
+    
+    while(initial!=NULL)
+    {
+       // cout<<start->data<<" "<<initial->data<<"\n";
+           if(initial->data!=start->data)return false;
+        initial=initial->next;
+        start=start->next;
+   
+    }
+   return true;
+ 
+}
+
+int main()
+{
+    Node* one=new Node(10);
+    Node* two=new Node(100);
+    Node* three=new Node(10);
+    Node* four=new Node(10);
+    Node* five=new Node(10);
+    Node* six=new Node(10);
+    
+    
+     one->next=two;
+     two->next=three;
+     three->next=NULL;
+     four->next=NULL;
+     five->next=NULL;
+     six->next=NULL;
+     
+
+   display(one);
+  bool ans= reverse_K_nodes_check_palindrome(one, 3);
+  
+     cout<<"is it a palindromic linked list : "<<ans<<"\n";
+
+    return 0;
+}
