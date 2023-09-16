@@ -1,0 +1,165 @@
+
+We first create three LL for 0  1 2 
+Then remive the first waste node
+Join them
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+  
+  public:
+  int data;
+  Node * next;
+  
+  Node(int data)
+  {
+   this->data=data;
+   this->next=NULL;
+  }
+    
+}; 
+
+
+void display(Node *head)
+{
+    Node *temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+ cout<<"\n";
+    
+}
+
+Node *sort_0_1_2(Node *head)
+{
+  display(head);
+   Node * ZeroHead=new Node(-1);
+   Node *ZeroTail=ZeroHead;
+   
+   Node * OneHead=new Node(-1);
+   Node *OneTail=OneHead;
+   
+   Node * TwoHead=new Node(-1);
+   Node *TwoTail=TwoHead;
+   
+   
+    Node *temp=head;
+   while(temp!=NULL)
+   {
+       if(temp->data==0)
+       {
+           Node *curr=temp;//assigning 
+           temp=temp->next;//moving ahead the pointer in LL
+           curr->next=NULL;//cutting ele form list 
+           
+           ZeroTail->next=curr;
+           ZeroTail=curr;
+       }
+       else if(temp->data==2)
+       {
+           Node *curr=temp;//assigning 
+           temp=temp->next;//moving ahead the pointer in LL
+           curr->next=NULL;//cutting ele form list 
+           
+           TwoTail->next=curr;
+           TwoTail=curr;  
+       }
+       else{
+             Node *curr=temp;//assigning 
+           temp=temp->next;//moving ahead the pointer in LL
+           curr->next=NULL;//cutting ele form list 
+           
+           OneTail->next=curr;
+           OneTail=curr;
+       }
+        
+       
+   }
+    
+     
+     
+     //removing -1 from zero and from every LL
+    //  Node *replace0=ZeroHead;
+     ZeroHead=ZeroHead->next;
+     //replace0->next=NULL;
+     //delete(replace0);
+     
+     //Node *replace1=OneHead;
+     OneHead=OneHead->next;
+    // replace1->next=NULL;
+     //delete(replace1);
+     
+     //Node *replace2=TwoHead;
+     TwoHead=TwoHead->next;
+     //replace2->next=NULL;
+     //delete(replace2);
+     
+ 
+    if(OneHead!=NULL)
+     {
+         ZeroTail->next=OneHead;
+         if(TwoHead!=NULL)
+         {
+             OneTail->next=TwoHead;
+         }
+     }
+     else if(OneHead==NULL)
+     {
+         ZeroTail->next=TwoHead;
+     }
+     
+     
+    display(ZeroHead);
+}
+
+int main()
+{
+
+    
+    Node *one =new Node(0);
+    Node *two =new Node(0);
+    Node *three =new Node(0);
+    Node *four =new Node(0);
+    Node *five =new Node(0);
+    Node *six =new Node(0);
+    
+    
+    one->next=two;
+    two->next=three;
+    three->next=four;
+    four->next=five;
+    five->next=six;
+    six->next=NULL;
+    
+    
+    
+    
+     sort_0_1_2(one);
+    // display(new_head);
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
