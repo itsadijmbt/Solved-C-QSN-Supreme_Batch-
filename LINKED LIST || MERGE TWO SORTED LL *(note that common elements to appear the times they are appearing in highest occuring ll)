@@ -1,0 +1,191 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+  
+  public:
+  int data;
+  Node * next;
+  
+  Node(int data)
+  {
+   this->data=data;
+   this->next=NULL;
+  }
+    
+}; 
+
+
+void display(Node *head)
+{
+    Node *temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+ cout<<"\n";
+    
+}
+
+
+Node *reverse(Node *head)
+{
+    Node * prev=NULL;
+    Node *curr=head;
+    while(curr!=NULL)
+    {
+        Node * forward=curr->next;
+        //forward is responsible for holding the chains intact;
+        curr->next=prev;
+        prev=curr;
+        curr=forward;
+    }
+    return prev;
+}
+
+int length(Node * head)
+{
+    int count=0;
+    Node *temp=head;
+    while(temp!=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    return count;
+}
+
+ 
+ Node * mergedLinkedList(Node * headOne , Node * headTwo)
+ {
+    display(headOne);
+    display(headTwo);
+    
+    int len=length(headOne)+length(headTwo);
+    
+    Node * firstPointer = headOne;
+    Node * SecondPointer =headTwo;
+    
+    Node *SortedLL_head=new Node(-1);
+    Node *SortedLL_tail=SortedLL_head;
+
+    while(len>0)
+    {
+        len--;
+      
+ 
+        if(firstPointer!=NULL &&  SecondPointer!=NULL)
+        {
+            Node *temp=new Node(-1);
+  
+             if(firstPointer->data < SecondPointer->data )
+            {
+                temp->data=firstPointer->data;
+                SortedLL_tail->next=temp;
+                temp->next=NULL;
+                SortedLL_tail=temp;
+                firstPointer=firstPointer->next;
+            }
+            else if(SecondPointer->data < firstPointer->data){
+                temp->data=SecondPointer->data;
+                SortedLL_tail->next=temp;
+                temp->next=NULL;
+                SortedLL_tail=temp;            
+                SecondPointer=SecondPointer->next;
+                 
+            }
+            else if(firstPointer->data ==SecondPointer->data)
+            { 
+                temp->data=firstPointer->data;
+                SortedLL_tail->next=temp;
+                temp->next=NULL;
+                SortedLL_tail=temp;            
+                SecondPointer=SecondPointer->next;
+                firstPointer=firstPointer->next;
+                
+            }
+        }  
+        else if(firstPointer==NULL &&  SecondPointer==NULL)
+        {
+       
+             break;
+        } 
+        else if(firstPointer==NULL ||  SecondPointer==NULL)
+        {
+            Node *temp=new Node(-1);
+           
+             if(firstPointer==NULL &&  SecondPointer==NULL)
+             {
+           
+             break;
+             } 
+            else if(firstPointer==NULL)
+            {
+   
+                temp->data=SecondPointer->data;
+                SortedLL_tail->next=temp;
+                temp->next=NULL;
+                SortedLL_tail=temp;            
+                SecondPointer=SecondPointer->next;
+            }
+            else if(SecondPointer==NULL)
+            { 
+                 temp->data=firstPointer->data;
+                SortedLL_tail->next=temp;
+                temp->next=NULL;
+                SortedLL_tail=temp;            
+                firstPointer=firstPointer->next;
+            }
+            
+        }
+            
+    }
+
+SortedLL_head=SortedLL_head->next;
+display(SortedLL_head);
+ 
+ }
+
+
+  
+int main()
+{
+
+    
+    Node *one =new Node(5);
+    Node *two =new Node(6);
+    Node *three =new Node(7);
+    Node *four =new Node(8);
+    Node *five =new Node(9);
+    Node *six =new Node(10);
+    
+     Node *one2 =new Node(1);
+    Node *two2 =new Node(2);
+    Node *three2 =new Node(3);
+    Node *four2 =new Node(9);
+    Node *five2 =new Node(10);
+    Node *six2 =new Node(13);
+    
+    one->next=two;
+    two->next=three;
+    three->next=four;
+    four->next=five;
+    five->next=six;
+    six->next=NULL;
+    
+    one2->next=two2;
+    two2->next=three2;
+    three2->next=four2;
+    four2->next=five2;
+    five2->next=six2;
+    six2->next=NULL;
+    
+    mergedLinkedList(one , one2);
+    
+    return 0;
+}
+
+
+
+
+
