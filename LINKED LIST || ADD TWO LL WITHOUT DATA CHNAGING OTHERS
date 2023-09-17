@@ -1,0 +1,221 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+  
+  public:
+  int data;
+  Node * next;
+  
+  Node(int data)
+  {
+   this->data=data;
+   this->next=NULL;
+  }
+    
+}; 
+
+
+void display(Node *head)
+{
+    Node *temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<"\t";
+        temp=temp->next;
+    }
+ cout<<"\n";
+    
+}
+
+
+Node *reverse(Node *head)
+{
+    Node * prev=NULL;
+    Node *curr=head;
+    while(curr!=NULL)
+    {
+        Node * forward=curr->next;
+        //forward is responsible for holding the chains intact;
+        curr->next=prev;
+        prev=curr;
+        curr=forward;
+    }
+    return prev;
+}
+
+int length(Node * head)
+{
+    int count=0;
+    Node *temp=head;
+    while(temp!=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    return count;
+}
+
+Node * add_linked_list(Node *headOne , Node*headTwo)
+{
+
+    display(headOne);
+    display(headTwo);
+   
+    Node * reversedOne = reverse(headOne);
+    Node * reversedTwo = reverse(headTwo);
+
+    // display(reversedOne);
+    // display(reversedTwo);
+  
+     
+     int length1=length(reversedOne);
+     int length2=length(reversedTwo);
+     
+     Node *temp1, *temp2;
+     
+     if(length1>=length2){temp1=reversedOne; temp2=reversedTwo;}
+     else {temp1=reversedTwo; temp2=reversedOne;}
+    
+     Node *addition_head=new Node(-1);
+     Node *addition_tail=addition_head; 
+  
+  
+     Node *curr=temp1;
+     Node *forward=curr->next;
+     int carry=0;
+     int value=0;
+     
+    while(temp1!=NULL)
+    {
+        
+        
+        if(temp2!=NULL)
+        {
+            
+          value = temp1->data + temp2->data + carry;
+          
+          
+          if(value>=10)
+          {
+              value=value-10;
+              Node * newNode= new Node(value);
+              newNode->data=value;
+              addition_tail->next=newNode;
+              newNode->next=NULL;
+              addition_tail=newNode;
+              carry=1;
+          }
+          else 
+          { Node * newNode= new Node(value);
+              newNode->data=value;
+              addition_tail->next=newNode;
+              newNode->next=NULL;
+              addition_tail=newNode;
+              carry=0;
+              
+          }
+          temp2=temp2->next;
+        }
+        else if(temp2==NULL)
+        {
+             value = temp1->data + carry;  
+             
+             if(value>=10)
+             {
+              value=value-10;
+              Node * newNode= new Node(value);
+              newNode->data=value;
+              addition_tail->next=newNode;
+              newNode->next=NULL;
+              addition_tail=newNode;
+              carry=1;
+
+             }
+             else
+             {
+              Node * newNode= new Node(value);
+              newNode->data=value;
+              addition_tail->next=newNode;
+              newNode->next=NULL;
+              addition_tail=newNode;
+              carry=0;
+              
+             }
+        }
+       
+        if(temp1->next==NULL && carry==1 )
+        {
+            Node * lastNode = new Node(1);
+            lastNode->data=carry;
+            addition_tail->next=lastNode;
+            lastNode->next=NULL;
+            addition_tail=lastNode;
+        }
+        temp1=temp1->next;
+        
+        
+    }
+    
+    addition_head=addition_head->next;
+    
+   // display(addition_head);
+    
+    Node *reversedAns= reverse(addition_head);
+    
+    display(reversedAns);
+    
+    
+}
+
+
+
+
+
+
+int main()
+{
+
+    
+    Node *one =new Node(3);
+    Node *two =new Node(9);
+    Node *three =new Node(3);
+    Node *four =new Node(1);
+    Node *five =new Node(5);
+    Node *six =new Node(5);
+    
+    
+    one->next=two;
+    two->next=three;
+    three->next=NULL;
+    
+    
+    four->next=five;
+    five->next=NULL;
+    six->next=NULL;
+    
+    
+    add_linked_list(one,four);
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
