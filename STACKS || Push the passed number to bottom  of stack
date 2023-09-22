@@ -1,0 +1,53 @@
+EXPLANATION:
+this is based on recursion and backtracking ...first the top is removed and stored, using two args or one arg with static var that stores the topmost element
+and also s.size is 0 we push that top and return the stack to prev call that now just appends the temp
+
+// here we pass the number we want to push toh the bottom of stack
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void insertAtEnd(stack<int> & s, int num)
+{
+        if(s.size()==0)
+        {  
+          s.push(num);
+          return ;
+        }
+       
+       if(s.top()==num) s.pop();
+
+        int temp=s.top();
+        s.pop();
+        insertAtEnd(s,num);
+        s.push(temp);
+}
+
+int main()
+{
+    stack<int>s;
+    
+     s.push(5);
+     s.push(15);
+     s.push(24);
+     s.push(32);
+     s.push(11);
+     s.push(12);
+     s.push(13);
+     s.push(101);
+     
+     
+// here we pass the number we want to push toh the bottom of stack
+  insertAtEnd(s,15);
+   
+  cout<<s.size();
+  while(!s.empty())
+  {
+      cout<<"\t"<<s.top()<<"\n";
+      s.pop();
+  }
+
+
+    return 0;
+}
