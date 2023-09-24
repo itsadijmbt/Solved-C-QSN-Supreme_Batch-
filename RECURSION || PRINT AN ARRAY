@@ -1,0 +1,24 @@
+
+#include <iostream>
+
+using namespace std;
+
+void print( int n, int arr[])
+{
+    if(n==0)return;
+    
+    n--;
+     
+    print(n, arr);
+    
+   cout<<arr[n]<<"\t";
+    
+}
+
+int main()
+{
+ int arr[7]={ 10, 40 , 70 , 20 , 30 , 40 , 50 };
+ 
+ print(7, arr);
+    return 0;
+}
