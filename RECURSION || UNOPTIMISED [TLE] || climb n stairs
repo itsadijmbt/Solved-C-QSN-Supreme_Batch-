@@ -17,6 +17,10 @@ int climb(int n)
     if(n==1 || n==0)return 1;
 // we created the recursion code by thinkig about the last values we would require to reach
 // nth stairs considering 1 ans 2 steps i.e at n-1 or at n-2 we would be standing at 
+// we we are at example 4th stair we would reach 4th by 3 or 2 3rd by 2 or 1 2nd by 1 or 0 so we eventually move top to down and
+// we figure out that we need a confition that moves frm top to down as we need that nth sair only nedded n-1 and n-2 
+//and we handle these where how we need to reach n we have n-1 and n-2 two case to be handled 
+//BAKI RECRSION DEKH LEGA
 
     int ans=climb(n-1)+climb(n-2);
     return ans;
