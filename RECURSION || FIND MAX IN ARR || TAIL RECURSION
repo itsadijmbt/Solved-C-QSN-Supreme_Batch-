@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int printmax(int arr[], int n)
+{
+    static int temp=INT_MIN;
+    
+    if(n==0) return temp;
+     n--;
+    printmax(arr,n);
+    
+    if(arr[n]>=temp) temp=arr[n];
+     
+        
+    return temp;
+    
+}
+
+int main()
+{
+    int n ;
+    cin>>n;
+    
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int temp=INT_MIN;
+    int ans =printmax(arr, n);
+    cout<<"\n"<<ans;
+}
