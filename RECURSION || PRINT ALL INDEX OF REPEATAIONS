@@ -1,0 +1,49 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> findKeyUsingRecursion(string s, char key,int i,vector<int> v) 
+{
+    if(i==s.size()) return v; 
+    
+   
+    if(s[i]==key) {
+      //  cout<<key<<" present  at \t"<<i<<"\n";
+         v.push_back(i);
+        //  to get multiple index we dont use return as it returns only 1 and after tail backtracking happens
+         //return v;
+         // if we return it than for every recurisve call it will reuturn c with on;y one index after whole backttracking
+    }
+   
+    i++;
+     
+    vector <int >ans= findKeyUsingRecursion(s,key,i,v);
+    // int ans = findKeyUsingRecursion(s,key,i);
+    
+    return ans;
+     
+    //  vector <int >ans= findKeyUsingRecursion(s,key,i,v);
+    // // int ans = findKeyUsingRecursion(s,key,i);
+    
+    // return ans;
+    // this indeed means that we get the ans vector after every recursive call but we return it on;y after we have backtracked 
+    // a vector is send at every r call 
+}
+
+
+int main()
+{
+    
+     string s;
+     cin>>s;
+     char key;
+     cin>>key;
+     
+     vector<int >v;
+     vector<int>ans;
+     ans= findKeyUsingRecursion(s,key,0,v);
+   
+     for(int i=0;i<ans.size();++i)cout<<"present at\t"<<ans[i]<<"\n";
+    return 0;
+}
