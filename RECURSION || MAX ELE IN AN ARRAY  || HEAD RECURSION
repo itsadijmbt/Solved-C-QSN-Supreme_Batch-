@@ -28,3 +28,4 @@ int main()
     int ans =printmax(arr, n, temp);
     cout<<"\n"<<ans<<"\n";
 }
+/
