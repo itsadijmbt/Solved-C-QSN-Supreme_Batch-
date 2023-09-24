@@ -1,0 +1,33 @@
+
+#include <iostream>
+
+using namespace std;
+
+int findKeyUsingRecursion(string s, char key,int i) 
+{
+    if(i==s.size()) return -1; 
+    
+   
+    if(s[i]==key)   return i;
+    
+    i++;
+     
+    int ans = findKeyUsingRecursion(s,key,i);
+   
+    return ans;
+    
+}
+
+
+int main()
+{
+    
+     string s;
+     cin>>s;
+     char key;
+     cin>>key;
+     
+     int ans= findKeyUsingRecursion(s,key,0);
+     cout<<"\n"<<ans<<"\n";
+    return 0;
+}
