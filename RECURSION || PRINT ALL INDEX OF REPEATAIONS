@@ -29,6 +29,8 @@ vector<int> findKeyUsingRecursion(string s, char key,int i,vector<int> v)
     // return ans;
     // this indeed means that we get the ans vector after every recursive call but we return it on;y after we have backtracked 
     // a vector is send at every r call 
+// if we return it than for every recurisve call it will reuturn c with only one index ad it will not finish the complete string while
+         // because it will return that v and after that v backtracking from that point/index  happens and since it returned at very first instance it will have only 1 index
 }
 
 
