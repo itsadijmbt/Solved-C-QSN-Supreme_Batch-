@@ -1,0 +1,47 @@
+
+#include <iostream>
+
+using namespace std;
+
+
+void subsequence(string s , int j , int k , int z)
+{
+    
+    if(z==s.size()) return;
+    
+    if(k<=s.size()-1)
+    {
+       for(int i=j;i<=k;++i)cout<<s[i];
+       cout<<"\n";
+       subsequence(s, j+1, k+1, z); 
+    }
+    else{
+        z++;
+        k=0;
+        j=0;
+        
+        subsequence(s,j,k+z,z);
+    }
+}
+
+
+
+
+int main()
+{
+ 
+  string s="abcdef";
+  
+  subsequence(s, 0, 0, 0);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
