@@ -1,0 +1,31 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool checkSorted(int i, int arr[], int n )
+{
+    if(i+1==n) return true ;
+
+    if(arr[i]>=arr[i+1]) return false;
+  
+     // we return false as when we get false it stops at that index and then er start the backtracking in the stack
+     // it can stop at 1 3 5 any index and from there it starts back track with false 
+    i++;
+     
+   bool ans = checkSorted(i , arr, n);
+
+    return ans;
+}
+
+int main()
+{
+    int n=5;
+    int arr[n];
+    for(int i=0;i<n;++i) cin>>arr[i];
+    
+    
+    bool ans=checkSorted(0,arr, n);
+    cout<<"\n"<<ans<<"\n";
+    return 0;
+}
