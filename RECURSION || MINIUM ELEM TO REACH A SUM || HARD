@@ -1,0 +1,81 @@
+SELF 60% 
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <limits.h>
+#include <vector>
+
+using namespace std;
+
+int minimumSum(int arr[], int target, int n)
+{
+    if(target==0)
+    {
+        
+        return 0;
+    }
+    
+    if(target<0)
+    {
+        return INT_MAX;
+    }
+    
+    int mini = INT_MAX;
+    x++;
+    
+    for(int i=0; i<n; i++)
+    {
+       int ans  =   minimumSum(arr,target-arr[i],n);
+       
+      // ans +1 because humne subraetcion mein us ek starting element ko count krne ke liye
+       if(ans!=INT_MAX)
+       {
+                 mini=min(mini, ans+1);
+       }
+ 
+    }
+    
+    return mini;
+}
+/*yep i got it...it updates ans  in each activation frame  +1 when it moves back in stack and stores it in mini  as initlayy mini was int MIn so at first case when target hit s0 and stack is emptied then with each activatioijnn frame ans gets increnenrted and mini gets a value depending upon tree length
+
+ChatGPT
+Exactly, you've got it!
+
+As the recursion unwinds, each activation frame updates the count based on the path taken to reach the base case where the target hits 0. The ans+1 operation is counting the number of elements used to reach the sub-target. The min function ensures that mini always holds the smallest count found so far. When all recursive calls are complete, mini will hold the smallest number of elements needed to reach or exceed the original target.
+
+It’s like exploring all paths in a tree and keeping track of the shortest path where each node represents an element from the array, and each path represents a combination of elements.
+
+*/
+
+/*Initially, mini is set to INT_MAX as a way to ensure that any valid combination of integers that sums to the target will have a smaller count, thus updating mini.
+
+Here is the breakdown again:
+
+mini is initialized to INT_MAX.
+The function proceeds with its recursive calls until it hits a base case where target == 0. This means a valid combination of integers that sums up to the target is found.
+As the recursion unwinds, ans + 1 increments the count for each element in this valid combination.
+mini is then updated with this count if it is less than the current value of mini.
+The function continues to explore other possible combinations via recursion.
+Each time another valid combination is found (another instance where target == 0), steps 3-4 are repeated, ensuring mini always holds the minimum count found so far.
+When all recursive paths have been explored and the recursion completely unwinds, mini holds the overall minimum count of integers needed to reach or exceed the target.
+So yes, the INT_MAX is just a starting point to ensure that mini gets updated with actual counts of integers used to reach the target as the function explores various combinations. Your understanding is entirely correct! If there's anything else you'd like to know or clarify, feel free to ask.*/
+
+
+int main()
+{
+    int n=5 ;
+    int a[5]={1,2,3,5,6};
+    
+    // for(int i=0;i<n;++i)cin>>a[i];
+
+     int ans = minimumSum(a,11,n);
+     cout<<ans;
+    return 0;
+}
