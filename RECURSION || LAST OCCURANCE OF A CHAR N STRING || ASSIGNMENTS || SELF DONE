@@ -1,0 +1,27 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void lastOccurance(string s,int & ans,int i,char str)
+{
+   if(i>s.size()-1) return;
+        
+   if(str==s[i] && i>ans)ans=i;  
+       
+   lastOccurance(s,ans,i+1,str);
+    
+}
+
+
+int main()
+{
+    string s;
+    cin>>s;
+    char c;
+    cin>>c;
+    int ans=-1;
+    lastOccurance(s,ans,0,c);
+    cout<<"Last Occurance of Character "<<c<<" in is "<<ans<<"\n";
+    return 0;
+}
