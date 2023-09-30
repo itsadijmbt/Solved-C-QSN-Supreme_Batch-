@@ -22,11 +22,16 @@ void sunsequenceAllWithoutOrder(string s, string ans , int i)
      
     
    sunsequenceAllWithoutOrder(s, ans , i+1);
-  
-   ans=ans+s[i];
     
-   sunsequenceAllWithoutOrder(s, ans , i+1); 
-     
+   sunsequenceAllWithoutOrder(s, ans+s[i] , i+1); 
+     // You can certainly use sunsequenceAllWithoutOrder(s, ans+s[i], i+1); as an alternative, and it should work correctly. 
+// It's another way to temporarily include s[i] in the subsequence for the recursive call without modifying the original ans
+// for the subsequent calls and backtrackings.
+// Using ans + s[i] in the function call is a concise way to explore the "include" case without permanently modifying the ans. 
+// It creates a new temporary string that includes s[i] and passes it to the recursive call. After that recursive call is finished,
+// the original ans (without s[i]) is still available for other operations or recursive calls.
+  
+ 
      
 }
 
