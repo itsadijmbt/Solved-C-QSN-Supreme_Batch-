@@ -1,0 +1,85 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void addTwoNumeralStrings(string s1,string s2,string & nw,int i, int length, string &newS)
+{
+   if(i>length-1) return;
+   
+   
+   addTwoNumeralStrings(s1,s2,nw,i+1,length,newS);
+  
+      static int carry=0;
+   
+      int value;
+      int diff=-1; 
+      if(s2.size()<length)
+      {
+       
+          diff=length-s2.length();
+        
+          if(i-diff>=0)  value= int(s1[i]-'0')+ int(s2[i-diff]-'0') + carry;
+          else value=int(s1[i]-'0')+ carry;
+          
+          
+          if(value>=10){
+              value=value-10;
+              carry=1;
+            }
+          else carry=0;
+             
+          nw[i]= char(48 + value);
+  
+          newS = nw[i] +newS; 
+          cout<<nw[i]<<" "<<s1[i]<<" "<<s2[i-diff]<<"\n";
+      }
+      else if(s1.size()<length)
+      {
+         
+          diff=length-s1.size();
+           
+           if(i-diff>=0)  value= int(s1[i-diff]-'0')+ int(s2[i]-'0') + carry;
+           else value =int(s2[i]-'0')+ carry;
+           
+          if(value>=10){
+              value=value-10;
+              carry=1;
+          }
+          else carry=0;
+          
+          nw[i]= char(48 + value);
+          newS = nw[i] +newS; 
+          cout<<nw[i]<<" "<<s1[i-diff]<<"+"<<s2[i]<<"\n";
+      }
+      else{
+        
+           int value = int(s1[i]-'0')+ int(s2[i]-'0') + carry;
+          if(value>=10){
+              value=value-10;
+              carry=1;
+          }
+          else carry=0;
+          
+          nw[i]= char(48 + value);
+          newS = nw[i] +newS;
+      }
+  }
+
+
+int main()
+{
+    string s1,s2,nw=" ",newS=" ";
+    cin>>s1>>s2;
+    
+    int length=0;
+    
+    if(s1.length()>s2.length())length = s1.length();
+    else length=s2.length();
+     
+     
+    addTwoNumeralStrings(s1,s2,nw,0,length,newS);
+
+    cout<<"THE UPDATED STRING\t:"<<newS<<"\n";
+     return 0;
+}
