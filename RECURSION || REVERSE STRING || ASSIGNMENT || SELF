@@ -1,0 +1,25 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+void reverseString(string s,string & nw,int i)
+{
+   if(i>s.size()-1) return;
+   
+   reverseString(s,nw,i+1);
+   
+   nw=nw+s[i];
+  
+}
+
+
+int main()
+{
+    string s,nw="";
+    cin>>s;
+    reverseString(s,nw,0);
+    cout<<"Reverse of String "<<s<<" is "<<nw<<"\n";
+    return 0;
+}
+}
