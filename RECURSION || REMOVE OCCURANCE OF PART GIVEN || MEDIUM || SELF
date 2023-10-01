@@ -1,0 +1,54 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+string removeSubstring(string &s1 , string s2, int i, int l1,int l2)
+{
+        if(i>s1.size()-1 || s1.size()==0)
+        {
+            return s1;
+        }
+        
+
+      if(s1.substr(i, l2)==s2)
+      {
+          if(i==0)
+          {
+            s1=s1.substr((i+l2),(l1-(i+l2)));
+            l1=s1.length();
+            cout<<s1<<"\t"<<l1<<"\n";
+            s1=removeSubstring(s1,s2,i,l1,l2);  
+          }
+          else
+          {
+            s1=s1.substr(0,i)+s1.substr((i+l2),(l1-(i+l2)));
+            l1=s1.length();
+            cout<<s1<<"\t"<<l1<<"\n";
+            s1=removeSubstring(s1,s2,i-1,l1,l2); 
+          }
+          
+      }
+      else
+        {
+          s1= removeSubstring(s1,s2,i+1,l1,l2);  
+        }
+        return s1;
+    
+}
+
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    
+    int l1=s1.length();
+    int l2=s2.length();
+    int  i=0;
+    
+    string ans = removeSubstring(s1,s2,i,l1,l2);
+    cout<<"\n"<<"modified string is\t"<<ans<<" ";
+    
+    
+}
+
+
+
