@@ -47,7 +47,9 @@ void mergeArrays(int arr[], int s, int e)
     // STEP : 6a :- when loops above end and one is left with value dur to different length issue we copy the array as it
     while(leftIndex<len1){arr[mainArrayIndex] = left[leftIndex]; mainArrayIndex++; leftIndex++;}
     
-    // as from the base condition everythin comes up sorted dont worry about order
+         // as from the base condition everythin comes up sorted dont worry about order the left over one that is just added will habe leme only greater as one finmished that means it has   
+      // that much ele that do lesser than the remaining in the left over array
+    
     
     while(rightIndex<len2){arr[mainArrayIndex]=right[rightIndex]; mainArrayIndex++; rightIndex++;}
     
