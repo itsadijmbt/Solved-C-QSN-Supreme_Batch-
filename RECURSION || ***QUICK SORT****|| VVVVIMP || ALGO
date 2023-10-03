@@ -1,0 +1,93 @@
+//THE STEPS FOR A quickSort
+
+//STEP 1
+//this happens via function called partition
+// we create a partition that we set at its correct position
+// we set a element for each recursive call 
+// set its element on right to be < no
+// set its element on left to be > no
+
+//STEP 2
+
+//rest is recursive call for smmaller and smaler parts of array where we use partiton returned value as len determiener
+
+
+int partiton(int arr[], int s, int e)
+{
+    
+    //Step 1 : choosing a element
+   // s here is p-1 from second call and s from sunsequent  
+    int pivotIndex = s;
+    int pivoElement = arr[s];
+
+   // Step 2: counting the element correct posn;
+   
+   int c=0;
+   //= puts an selects the right most one
+   for(int i =s+1;i<=e;i++) if(arr[i]<=  pivoElement)c++;
+    
+   // step 3 : setting the element at correct location
+  
+   int rightIndex = s+c;
+   //s+c because as it recursion happens for varyn indexes
+   swap(arr[pivotIndex], arr[rightIndex]);
+   //updating indexes
+   pivotIndex= rightIndex;
+ 
+    int i =s;
+    int j = e;
+    
+    // this portion runs and check if there is an error in pattern [left/right element arrangement]
+    while(i<pivotIndex && j>pivotIndex)
+    {
+        //= puts an selects the right most one
+        while(arr[i]<=pivoElement)i++;
+       
+        while(arr[j]>pivoElement)j--;
+        
+        if(i<pivotIndex && j>pivotIndex) swap(arr[i], arr[j]);
+    }
+    
+    return pivotIndex;
+}
+
+
+
+
+void quickSort(int arr[], int s, int e)
+{
+     if(s>=e)return;
+     
+     
+     int p=partiton(arr,s,e);
+     
+     // left part excluding p
+     quickSort(arr,s,p-1);
+     // right part excluding p
+     quickSort(arr,p+1,e);
+     
+    
+    
+}
+
+
+int main()
+{
+   
+    int arr[9] = {8,1,20,30,6,5,60,5,8};
+    for(int i=0;i<9;++i)cout<<arr[i]<<" ";
+       
+     cout<<"\n";   
+    
+    quickSort(arr,0,8);
+    
+    
+    for(int i=0;i<9;++i)cout<<arr[i]<<" ";
+    return 0;
+}
+
+
+
+
+
+
